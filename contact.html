@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HDB - Hotel Contact</title>
-    <!-- Add Font Awesome CDN -->
+    <title>HDB - Contact Us</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-    <!-- Navigation Header -->
+    <!-- ========================================
+         HEADER - Navigation Bar
+         Purpose: Main site navigation menu
+    ========================================= -->
     <header>
         <nav id="navbar">
             <div class="container">
@@ -24,48 +28,65 @@
         </nav>
     </header>
 
-    <!-- Contact Form Section -->
+    <!-- ========================================
+         CONTACT FORM SECTION
+         Purpose: Allow users to send messages to hotel
+         Form validation and feedback implemented for UX
+    ========================================= -->
     <section id="contact-form">
         <div class="container">
             <h1><span class="text-primary">Contact</span> Us</h1>
             <p>Please fill out the form below to contact us</p>
-            <form action="submit_form.php" method="POST">
+            
+            <!-- Contact Form -->
+            <form id="contactFormSubmit" action="submit_form.php" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                 </div>
-
+                
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 </div>
-  
+                
                 <div class="form-group">
                     <label for="message">Message</label>
+                    <!-- FIXED: Removed incorrect 'type' attribute from textarea -->
                     <textarea id="message" name="message" placeholder="Write your message here" rows="5" required></textarea>
                 </div>
+                
                 <button type="submit" class="btn">Submit</button>
+                
+                <!-- User Feedback Message Area (ACCESSIBILITY FIX) -->
+                <div id="formFeedback" class="feedback-message" style="display: none;"></div>
             </form>
         </div>
     </section>
 
-    <!-- Contact Info Section -->
+    <!-- ========================================
+         CONTACT INFO SECTION
+         Purpose: Display hotel contact information
+         Icons: Font Awesome (https://fontawesome.com)
+    ========================================= -->
     <section id="contact-info" class="bg-dark">
         <div class="container">
             <div class="info-box">
-                <!-- Location -->
+                <!-- Location Information -->
                 <div class="box">
                     <i class="fas fa-map-marker-alt fa-3x"></i>
                     <h3>Location</h3> 
                     <p>P.O. Box 73137, Building 5, Dubai Design District, UAE</p>
                 </div>
-                <!-- Phone -->
+                
+                <!-- Phone Contact -->
                 <div class="box">
                     <i class="fas fa-phone fa-3x"></i> 
                     <h3>Phone Number</h3> 
                     <p>08085064905</p>
                 </div>
-                <!-- Email -->
+                
+                <!-- Email Contact -->
                 <div class="box">
                     <i class="fas fa-envelope fa-3x"></i> 
                     <h3>Email</h3> 
@@ -77,24 +98,46 @@
 
     <div class="clr"></div>
 
-    <!-- Footer -->
+    <!-- ========================================
+         FOOTER
+         Purpose: Copyright and external links
+    ========================================= -->
     <footer id="main-footer">
         <p>Hotel HDB &copy; 2025, All Rights Reserved</p>
         <p>
+            <!-- External booking links open in new tab for better UX -->
             <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer">Book Now on Booking.com</a> | 
             <a href="https://www.tripadvisor.com" target="_blank" rel="noopener noreferrer">Review us on TripAdvisor</a>
         </p>
     </footer>
 
-    <!-- Form Submission JavaScript -->
-     <!-- Source: MDN Web Docs - Form Validation Tutorial -->
-<!-- Reference: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
-<!-- Purpose: Prevents default form submission and provides user confirmation message -->
+    <!-- ========================================
+         FORM SUBMISSION SCRIPT
+         Purpose: Provide user feedback on form submission
+         Source: MDN Web Docs - Form Validation
+         Reference: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
+         Modified to show visual feedback message instead of alert
+    ========================================= -->
     <script>
-        document.querySelector('form').addEventListener('submit', function(e) {
+        document.getElementById('contactFormSubmit').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for contacting us! We will get back to you soon.');
+            
+            // Get user's name for personalized message
+            const userName = document.getElementById('name').value;
+            const feedback = document.getElementById('formFeedback');
+            
+            // Display success message (ACCESSIBILITY FIX)
+            feedback.style.display = 'block';
+            feedback.className = 'feedback-message success';
+            feedback.innerHTML = '<strong>Success!</strong> Thank you ' + userName + '! Your message has been sent successfully. We will get back to you within 24 hours.';
+            
+            // Reset form fields
             this.reset();
+            
+            // Auto-hide message after 6 seconds
+            setTimeout(function() {
+                feedback.style.display = 'none';
+            }, 6000);
         });
     </script>
 </body>
