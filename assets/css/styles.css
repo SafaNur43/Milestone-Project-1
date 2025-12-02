@@ -16,39 +16,6 @@
 
 /* Reset */
 /* Source: Standard CSS reset - widely used web development practice */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* ... rest of your CSS ... */
-
-/* Showcase Section (Hero) */
-/* Source: CSS-Tricks - Overlay technique for improving text contrast on background images */
-/* Reference: https://css-tricks.com/design-considerations-text-images/ */
-#showcase {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/pexels-pham-ngoc-anh-170983008-28011238.jpg);
-    /* ... */
-}
-
-/* ... more CSS ... */
-
-/* Media Queries for Responsive Design */
-/* Source: W3Schools Responsive Web Design Tutorial */
-/* Reference: https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
-/* Breakpoints and styles customized for this project's specific layout needs */
-@media(max-width: 768px) {
-    /* Navigation */
-    #navbar h1 {
-        float: none;
-        text-align: center;
-        padding-bottom: 10px;
-    }
-    /* ... rest of media queries ... */
-}
-
-
 /* Reset */
 * {
     margin: 0;
@@ -361,9 +328,14 @@ p {
     padding: 50px 0;
 }
 
+#contact-info .container {
+    max-width: 1100px;
+}
+
 #contact-info .info-box {
     display: flex;
     justify-content: space-around;
+    align-items: flex-start;
     flex-wrap: wrap;
 }
 
@@ -377,6 +349,16 @@ p {
 #contact-info .box i {
     color: #eca35b;
     margin-bottom: 15px;
+}
+
+#contact-info .box h3 {
+    color: #eca35b;
+    margin-bottom: 10px;
+}
+
+#contact-info .box p {
+    color: #fff;
+    font-size: 16px;
 }
 
 /* Footer */
